@@ -2,16 +2,19 @@ import 'package:chats/auth/auth_get.dart';
 import 'package:chats/login%20screen/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load();
+  // await dotenv.load(fileName: ".env");
     await Firebase.initializeApp(
     options: FirebaseOptions(
-      apiKey: "AIzaSyA-XFKY6Lgcgq_F5Vmumyazm6YkwegKL4U",
-      appId: "1:1089761737892",
-      messagingSenderId: "",
-      projectId: "chats-df2e3",
+      apiKey: dotenv.env['API_KEY']!,
+      appId: dotenv.env['APP_ID']!,
+      messagingSenderId: dotenv.env['MESSAGING_SENDER_ID']!,
+      projectId: dotenv.env['PROJECT_ID']!,
     ),
   );
   runApp(  MyApp());
